@@ -1,39 +1,103 @@
-<?php
-//funkce na vyhazovani chyb
-function alert($msg) {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-}
-//konfigurační soubor s přihlášením na local databazi
-require_once "config.php";
-//získam z url udaje co vyplnil uživatel
-$jmeno = $_POST['jmeno'];
-$prijmeni = $_POST['prijmeni'];
-$heslo = $_POST['heslo'];
-$overheslo = $_POST['overheslo'];
-if ($heslo!=$overheslo) {
-    header('location:registrace.html');
-   //chybi alert
-    exit;
-}
-$hashheslo = hash('ripemd160',$heslo);
+<?php 
 
-//navazuji spojeni s databízí
-$spojeni = mysqli_connect($dbhost,$dbusername,$dbpassword,$dbname);
-//kontrola spojení
-if (!$spojeni) {
-    die("Spojení nenavázáno: " . mysqli_connect_error());
+require_once 'jadro/init.php';
+
+if(prihlasen() === TRUE) {
+	header('location: prispevky.php');
 }
 
-$dotaz ="INSERT INTO uzivatele (jmeno,prijmeni,heslo) VALUES ($jmeno,$prijmeni,$hashheslo)";
-mysqli_query($spojeni,$dotaz);
-$odpoved = mysqli_query($spojeni,$dotaz);
-if ($odpoved== true) {
-    //hlaska s uspesnou registraci
-    header('location:index.html');
+
+if($_POST) {
+
+	$jmeno = $_POST['jmeno'];
+	$prijmeni = $_POST['prijmeni'];
+	
+	$heslo = $_POST['heslo'];
+	$overheslo = $_POST['overheslo'];
+
+	if($jmeno == "") {
+		echo " * nevyplnil jsi jmeno <br />";
+	}
+
+	if($prijmeni == "") {
+		echo " * nevyplnil jsi přijmení <br />";
+	}
+
+	
+
+	if($heslo == "") {
+		echo " * nevyplnil jsi heslo <br />";
+	}
+
+	if($overheslo == "") {
+		echo " * nevyplnil jsi ověření hesla <br />";
+	}
+
+	if($jmeno && $prijmeni &&  $heslo && $overheslo) {
+
+		if($heslo == $overheslo) {
+			if(jizexistuje($jmeno) === TRUE) {
+				echo $_POST['jmeno'] . " jméno již existuje !!";
+			} else {
+				if(registrovat() === TRUE) {
+					echo "úspěšně zaregistrován <a href='prihlaseni.php'>přihlaš se</a>";
+				} else {
+					echo "Error";
+				}
+			}
+		} else {
+			echo " * neschodují se ti hesla <br />";
+		}
+	}
+
 }
-else {
-//hlaska ze nespela registrace
-alert("chyba databaze");
-header('location:registrace.html');
-}
-die();
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+</head>
+<body>
+
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+	<div>
+		<label for="jmeno">Jméno: </label>
+		<input type="text" name="jmeno" placeholder="napiš jméno" autocomplete="off" value="<?php if($_POST) {
+			echo $_POST['jmeno'];
+			} ?>" />
+	</div>
+	<br />
+
+	<div>
+		<label for="prijmeni">Přijmení: </label>
+		<input type="text" name="prijmeni" placeholder="Přijmení" autocomplete="off" value="<?php if($_POST) {
+			echo $_POST['prijmeni'];
+			} ?>" />
+	</div>
+	<br />
+
+	<div>
+		<label for="heslo">Heslo: </label>
+		<input type="password" name="heslo" placeholder="Password" autocomplete="off" />
+	</div>
+	<br />
+
+	<div>
+		<label for="overheslo">Ověření hesla: </label>
+		<input type="password" name="overheslo" placeholder="Ověř heslo" autocomplete="off" />
+	</div>
+	<br />
+	<div>
+		<button type="submit">registruj</button>
+		<button type="reset">Cancel</button>
+	</div>
+
+</form>
+
+již zaregistrovan? <a href="login.php">přihlaš se</a> 
+
+</body>
+</html>
