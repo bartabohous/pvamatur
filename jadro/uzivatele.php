@@ -22,7 +22,7 @@ function jizexistujejmeno($jmeno) {
 
 	$dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno'";
 	$query = $spojeni->query($dotaz);
-	if($query->num_rows > 1) {
+	if($query->num_rows >= 1) {
 		return true;
 	} else {
 		return false;
