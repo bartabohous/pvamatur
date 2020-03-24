@@ -17,7 +17,7 @@ function neprihlasen() {
 }
 
 function jizexistuje($jmeno) {
-	// global keywords is used to access a global variable from within a function
+	
 	global $spojeni;
 
 	$dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno'";
@@ -29,7 +29,7 @@ function jizexistuje($jmeno) {
 	}
 
 	$spojeni->close();
-	// close the database connection
+	
 }
 
 function registrovat() {
@@ -76,7 +76,7 @@ function prihlaseni($jmeno, $heslo) {
     }
  
     $spojeni->close();
-    // close the database connection
+   
 }
  
 function udaje($jmeno) {
@@ -92,5 +92,26 @@ function udaje($jmeno) {
      
     $spojeni->close();
  
-    // close the database connection
+    
+}
+function poznatpodleID($id) {
+	global $spojeni;
+
+	$dotaz = "SELECT * FROM uzivatele WHERE id = $id";
+	$query = $spojeni->query($dotaz);
+	$vysledek = $query->fetch_assoc();
+	return $vysledek;
+
+	$spojeni->close();
+}
+function odhlasit() {
+	if(prihlasen() === TRUE){
+		
+		session_unset();
+
+		
+		session_destroy();
+
+		header('location: prihlaseni.php');
+	}
 }

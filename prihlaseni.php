@@ -6,7 +6,7 @@ if(prihlasen() === TRUE) {
 	header('location: prispevky.php');
 }
 
-// form submiited
+
 if($_POST) {
 	$jmeno = $_POST['jmeno'];
 	$heslo = $_POST['heslo'];
@@ -38,7 +38,7 @@ if($_POST) {
 		}
 	}
 
-} // /if
+} 
 
 
 ?>
