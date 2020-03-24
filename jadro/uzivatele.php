@@ -56,8 +56,41 @@ function registrovat() {
 	
 } 
 
-
-
 function hashheslo($heslo) {
 	return hash('sha256', $heslo);
+}
+function prihlaseni($jmeno, $heslo) {
+    global $spojeni;
+    $udaje = udaje($jmeno);
+ 
+    if($udaje) {
+        $hashheslo = hashheslo($heslo);
+        $dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno' AND heslo = '$hashheslo'";
+        $query = $spojeni->query($dotaz);
+ 
+        if($query->num_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+ 
+    $spojeni->close();
+    // close the database connection
+}
+ 
+function udaje($jmeno) {
+    global $spojeni;
+    $dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno'";
+    $query = $spojeni->query($dotaz);
+    $odpoved = $query->fetch_assoc();
+    if($query->num_rows == 1) {
+        return $odpoved;
+    } else {
+        return false;
+    }
+     
+    $spojeni->close();
+ 
+    // close the database connection
 }
