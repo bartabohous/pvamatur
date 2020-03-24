@@ -41,8 +41,10 @@ if($_POST) {
  
  
 <!DOCTYPE html>
-<html>
+<html lang="cs">
+
 <head>
+    <meta charset="UTF-8">
     <title>nastavení</title>
 </head>
 <body>

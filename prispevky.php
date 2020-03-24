@@ -9,8 +9,10 @@ $udaje = poznatpodleID($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="cs">
+
 <head>
+    <meta charset="UTF-8">
 	<title>příspěvky</title>
 </head>
 <body>

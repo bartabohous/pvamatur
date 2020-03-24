@@ -20,7 +20,7 @@ if($_POST) {
 	}
 
 	if($jmeno && $heslo) {
-		if(jizexistuje($jmeno) == TRUE) {
+		if(jizexistujejmeno($jmeno) == TRUE) {
 			$prihlaseni = prihlaseni($jmeno, $heslo);
 			if($prihlaseni) {
 				$udaje = udaje($jmeno);
@@ -45,9 +45,11 @@ if($_POST) {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="cs">
+
 <head>
-	<title>Login</title>
+    <meta charset="UTF-8">
+	<title>přihlášení</title>
 </head>
 <body>
 

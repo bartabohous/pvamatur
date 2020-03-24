@@ -38,8 +38,13 @@ if($_POST) {
 	if($jmeno && $prijmeni &&  $heslo && $overheslo && $email) {
 
 		if($heslo == $overheslo) {
-			if(jizexistuje($jmeno) === TRUE) {
+			if(jizexistujejmeno($jmeno) === TRUE) {
 				echo $_POST['jmeno'] . " jméno již existuje !!";
+				
+			} 
+			if(jizexistujeemail($email) === TRUE) {
+				echo $_POST['email'] . " email je již přiřazen !!";
+				
 			} else {
 				if(registrovat() === TRUE) {
 					echo "úspěšně zaregistrován <a href='prihlaseni.php'>přihlaš se</a>";
@@ -57,9 +62,11 @@ if($_POST) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="cs">
+
 <head>
-	<title>Registration Form</title>
+    <meta charset="UTF-8">
+	<title>Registrace</title>
 </head>
 <body>
 

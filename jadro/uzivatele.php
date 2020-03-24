@@ -16,13 +16,28 @@ function neprihlasen() {
 	}
 }
 
-function jizexistuje($jmeno) {
+function jizexistujejmeno($jmeno) {
 	
 	global $spojeni;
 
 	$dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno'";
 	$query = $spojeni->query($dotaz);
-	if($query->num_rows == 1) {
+	if($query->num_rows > 1) {
+		return true;
+	} else {
+		return false;
+	}
+
+	$spojeni->close();
+	
+}
+function jizexistujeemail($email) {
+	
+	global $spojeni;
+
+	$dotaz = "SELECT * FROM uzivatele WHERE email = '$email'";
+	$query = $spojeni->query($dotaz);
+	if($query->num_rows > 1) {
 		return true;
 	} else {
 		return false;
@@ -143,4 +158,36 @@ function aktualizovatinfo($id) {
 	} else {
 		return false;
 	}
+}
+function porovnanihesla($id, $heslo) {
+    global $spojeni;
+ 
+    $udaje = poznatpodleID($id);
+ 
+    $hashheslo = hashheslo($heslo);
+ 
+    if($hashheslo == $udaje['heslo']) {
+        return true;
+    } else {
+        return false;
+    }
+ 
+    
+    $spojeni->close();
+}
+ 
+function zmenahesla($id, $heslo) {
+    global $spojeni;
+ 
+    
+    $hashheslo = hashheslo($heslo);
+ 
+    $dotaz = "UPDATE uzivatele SET heslo = '$hashheslo' WHERE id = $id";
+    $query = $spojeni->query($dotaz);
+ 
+    if($query === TRUE) {
+        return true;
+    } else {
+        return false;
+    }
 }

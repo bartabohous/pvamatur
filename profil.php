@@ -11,8 +11,10 @@ $udaje = poznatpodleID($_SESSION['id']);
 ?>
  
 <!DOCTYPE html>
-<html>
+<html lang="cs">
+
 <head>
+    <meta charset="UTF-8">
     <title>Profil</title>
 </head>
 <body>
