@@ -11,7 +11,7 @@ if($_POST) {
 
 	$jmeno = $_POST['jmeno'];
 	$prijmeni = $_POST['prijmeni'];
-	
+	$email = $_POST['email'];
 	$heslo = $_POST['heslo'];
 	$overheslo = $_POST['overheslo'];
 
@@ -22,7 +22,9 @@ if($_POST) {
 	if($prijmeni == "") {
 		echo " * nevyplnil jsi přijmení <br />";
 	}
-
+	if($email == "") {
+		echo " * nevyplnil jsi email <br />";
+	}
 	
 
 	if($heslo == "") {
@@ -33,7 +35,7 @@ if($_POST) {
 		echo " * nevyplnil jsi ověření hesla <br />";
 	}
 
-	if($jmeno && $prijmeni &&  $heslo && $overheslo) {
+	if($jmeno && $prijmeni &&  $heslo && $overheslo && $email) {
 
 		if($heslo == $overheslo) {
 			if(jizexistuje($jmeno) === TRUE) {
@@ -78,6 +80,11 @@ if($_POST) {
 			} ?>" />
 	</div>
 	<br />
+	<div>
+		<label for="email">Email: </label>
+		<input type="text" name="email" placeholder="email" autocomplete="off" />
+	</div>
+	<br />
 
 	<div>
 		<label for="heslo">Heslo: </label>
@@ -97,7 +104,7 @@ if($_POST) {
 
 </form>
 
-již zaregistrovan? <a href="login.php">přihlaš se</a> 
+již zaregistrovan? <a href="prihlaseni.php">přihlaš se</a> 
 
 </body>
 </html>

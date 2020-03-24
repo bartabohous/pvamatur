@@ -39,11 +39,12 @@ function registrovat() {
 	$jmeno = $_POST['jmeno'];
 	$prijmeni = $_POST['prijmeni'];
 	$heslo = $_POST['heslo'];
+	$email = $_POST['email'];
 	
 	
 	$nheslo = hashheslo($heslo);
 	if($nheslo) {
-		$dotaz = "INSERT INTO uzivatele (jmeno, prijmeni, heslo) VALUES ('$jmeno', '$prijmeni', '$nheslo')";
+		$dotaz = "INSERT INTO uzivatele (jmeno, prijmeni, heslo,email) VALUES ('$jmeno', '$prijmeni', '$nheslo', '$email')";
 		$query = $spojeni->query($dotaz);
 		if($query === TRUE) {
 			return true;

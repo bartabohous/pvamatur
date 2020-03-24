@@ -28,6 +28,10 @@ $udaje = poznatpodleID($_SESSION['id']);
         <th>Přijmení</th>
         <td><?php echo $udaje['prijmeni'] ?></td>
     </tr>
+    <tr>
+        <th>Email</th>
+        <td><?php echo $udaje['email'] ?></td>
+    </tr>
     
     
  
