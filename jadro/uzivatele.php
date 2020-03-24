@@ -115,3 +115,31 @@ function odhlasit() {
 		header('location: prihlaseni.php');
 	}
 }
+function existujepodleID($id, $jmeno) {
+	global $spojeni;
+
+	$dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno' AND id != $id";
+	$query = $spojeni->query($dotaz);
+	if($query->num_rows >= 1) {
+		return true;
+	} else {
+		return false;
+	}
+
+	$spojeni->close();
+}
+function aktualizovatinfo($id) {
+	global $spojeni;
+
+	$jmeno = $_POST['jmeno'];
+	$prijmeni = $_POST['prijmeni'];
+	
+
+	$dotaz = "UPDATE uzivatele SET jmeno = '$jmeno', prijmeni = '$prijmeni' WHERE id = $id";
+	$query = $spojeni->query($dotaz);
+	if($query === TRUE) {
+		return true;
+	} else {
+		return false;
+	}
+}
