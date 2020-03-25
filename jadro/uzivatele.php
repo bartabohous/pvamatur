@@ -37,7 +37,7 @@ function jizexistujeemail($email) {
 
 	$dotaz = "SELECT * FROM uzivatele WHERE email = '$email'";
 	$query = $spojeni->query($dotaz);
-	if($query->num_rows > 1) {
+	if($query->num_rows >= 1) {
 		return true;
 	} else {
 		return false;
@@ -131,10 +131,10 @@ function odhlasit() {
 		header('location: prihlaseni.php');
 	}
 }
-function existujepodleID($id, $jmeno) {
+function existujepodleID($id, $jmeno,$email) {
 	global $spojeni;
 
-	$dotaz = "SELECT * FROM uzivatele WHERE jmeno = '$jmeno' AND id != $id";
+	$dotaz = "SELECT * FROM uzivatele WHERE( jmeno = '$jmeno' OR email = '$email') AND id != $id";
 	$query = $spojeni->query($dotaz);
 	if($query->num_rows >= 1) {
 		return true;
@@ -149,9 +149,10 @@ function aktualizovatinfo($id) {
 
 	$jmeno = $_POST['jmeno'];
 	$prijmeni = $_POST['prijmeni'];
+	$email = $_POST['email'];
 	
 
-	$dotaz = "UPDATE uzivatele SET jmeno = '$jmeno', prijmeni = '$prijmeni' WHERE id = $id";
+	$dotaz = "UPDATE uzivatele SET jmeno = '$jmeno', prijmeni = '$prijmeni', email = '$email' WHERE id = $id";
 	$query = $spojeni->query($dotaz);
 	if($query === TRUE) {
 		return true;

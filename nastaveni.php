@@ -10,6 +10,7 @@ $udaje = poznatpodleID($_SESSION['id']);
 if($_POST) {
     $jmeno = $_POST['jmeno'];
     $prijmeni = $_POST['prijmeni'];
+    $email = $_POST['email'];
     
  
     if($jmeno == "") {
@@ -19,15 +20,19 @@ if($_POST) {
     if($prijmeni == "") {
         echo " * nevyplnil jsi přijmeni <br />";
     }
+    if ($email== "") {
+        echo "* nevyplnil jsi email<br/>";
+    }
  
  
-    if($jmeno && $prijmeni) {
-        $existuje = existujepodleID($_SESSION['id'], $jmeno);
+    if($jmeno && $prijmeni && $email) {
+        $existuje = existujepodleID($_SESSION['id'], $jmeno,$email);
         if($existuje === TRUE) {
-            echo "uživatelské jméno je již zabrané <br /> ";
+            echo "uživatelské jméno, nebo email je již zabrané <br /> ";
         } else {
             if(aktualizovatinfo($_SESSION['id']) === TRUE) {
                 echo "uspěšně aktualizováno <br />";
+                
             } else {
                 echo "Error,něco je špatně";
             }
@@ -66,6 +71,15 @@ if($_POST) {
             echo $_POST['prijmeni'];
             } else {
                 echo $udaje['prijmeni'];
+                } ?>">
+    </div>
+    <br />
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="Email" value="<?php if($_POST) {
+            echo $_POST['email'];
+            } else {
+                echo $udaje['email'];
                 } ?>">
     </div>
     <br />
