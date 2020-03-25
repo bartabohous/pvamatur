@@ -22,8 +22,17 @@ $udaje = poznatpodleID($_SESSION['id']);
 	<li><a href="profil.php">Profil</a></li>
 	<li><a href="nastaveni.php">Nastavení</a></li>
 	<li><a href="zmenahesla.php">změna hesla</a></li>
+	<li><a href="vytvorpoznamku.php">nová poznámka</a></li>
 	<li><a href="odhlasit.php">odklásit</a></li>
+	
 </ul>
+<br/>
+
+<?php
+
+
+?>
+
 
 
 </body>

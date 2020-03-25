@@ -71,6 +71,23 @@ function registrovat() {
 	$spojeni->close();
 	
 } 
+function novapoznamka(){
+	global $spojeni;
+	$telo = $_POST['telo'];
+	$nadpis = $_POST['nadpis'];
+	$idvlastnika = $_SESSION['id'];
+	
+
+
+	
+	$dotaz = "INSERT INTO poznamky (nadpis, idvlastnika,telo) VALUES ('$nadpis', '$idvlastnika','$telo')";
+	$query = $spojeni->query($dotaz);
+	if($query === TRUE) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 function hashheslo($heslo) {
 	return hash('sha256', $heslo);
