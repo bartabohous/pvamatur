@@ -219,3 +219,22 @@ function zmenahesla($id, $heslo) {
         return false;
     }
 }
+function oznacitflag($id,$flago){
+	global $spojeni;
+$flag = $flago *(-1);
+	$dotaz = "UPDATE poznamky SET flag ='$flag' WHERE id = $id";
+	$query = $spojeni->query($dotaz);
+
+}
+function smazatprispevek($id){
+	global $spojeni;
+	$dotaz = "DELETE FROM poznamky WHERE id ='$id'";
+	$query = $spojeni->query($dotaz);
+}
+function smazatucet($id){
+	global $spojeni;
+	$dotaz =  "DELETE FROM uzivatele WHERE id ='$id'";
+	$dotaz2 =  "DELETE FROM poznamky WHERE idvlastnika ='$id'";
+	$spojeni->query($dotaz);
+	$spojeni->query($dotaz2);
+}

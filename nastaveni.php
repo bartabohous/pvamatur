@@ -7,7 +7,7 @@ if(neprihlasen() === TRUE) {
 $udaje = poznatpodleID($_SESSION['id']);
  
  
-if($_POST) {
+if(isset($_POST['submit'])) {
     $jmeno = $_POST['jmeno'];
     $prijmeni = $_POST['prijmeni'];
     $email = $_POST['email'];
@@ -39,6 +39,20 @@ if($_POST) {
         }
     }
  
+}
+if(isset($_POST['smazat'])){
+    $id = $_SESSION['id'];
+    $heslo = $_POST['heslo'];
+    if($heslo == "") {
+		echo " * nevyplnil jsi heslo <br />";
+    }
+    elseif (hashheslo($heslo) == $udaje['heslo'])
+     {
+    smazatucet($id);
+    odhlasit();
+    }
+    else{
+    echo"zadal jsi špatné heslo";}
 }
  
  
@@ -85,7 +99,11 @@ if($_POST) {
     <br />
  
     <div>
-        <button type="submit">Odeslat</button>       
+        <button name="submit" type="submit">Odeslat</button>       
+    </div>
+    <div>
+        <button name="smazat" type="submit">zrušit účet</button>  
+        <input type="password" name="heslo" placeholder="potvrď heslo pro smazání" autocomplete="off" />   
     </div>
  
 </form>
