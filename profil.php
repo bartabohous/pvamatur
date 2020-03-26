@@ -35,7 +35,7 @@ $udaje = poznatpodleID($_SESSION['id']);
         <td><?php echo $udaje['email'] ?></td>
     </tr>
     
-    
+</table>
  
 <br />
  

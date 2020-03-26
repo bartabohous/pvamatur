@@ -6,6 +6,7 @@ if(neprihlasen() === TRUE) {
 
 $udaje = poznatpodleID($_SESSION['id']);
 
+$prispevky = poznatprispevekpodleID($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +29,19 @@ $udaje = poznatpodleID($_SESSION['id']);
 </ul>
 <br/>
 
-<?php
+
+<table>
+
+<?php foreach($prispevky as $radek): ?>
+	<tr>
+	<td><h1><?=$radek["nadpis"]?></h1></td>
+	<td><?=$radek["casvytvoreni"]?></td>
+	<td><a href="detailprispevku.php">detail</a></td>
+    </tr>
+			<?php endforeach; ?>
+</table>
 
 
-?>
 
 
 

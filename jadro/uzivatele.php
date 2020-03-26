@@ -130,12 +130,22 @@ function udaje($jmeno) {
 function poznatpodleID($id) {
 	global $spojeni;
 
-	$dotaz = "SELECT * FROM uzivatele WHERE id = $id";
+	$dotaz = "SELECT * FROM uzivatele WHERE id = '$id'";
 	$query = $spojeni->query($dotaz);
 	$vysledek = $query->fetch_assoc();
 	return $vysledek;
 
 	$spojeni->close();
+}
+function poznatprispevekpodleID($id){
+global $spojeni;
+$dotaz ="SELECT * FROM poznamky WHERE idvlastnika = '$id'";
+$query = $spojeni->query($dotaz);
+	$vysledek = $query->fetch_all(MYSQLI_ASSOC);
+	return $vysledek;
+
+	$spojeni->close();
+
 }
 function odhlasit() {
 	if(prihlasen() === TRUE){
