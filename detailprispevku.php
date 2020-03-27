@@ -18,6 +18,7 @@ $telo = $_SESSION["telo"];
     <title>detail</title>
 </head>
 <body>
+<a href="prispevky.php"><button type="button">zpět</button></a>
 <h1><?=$nadpis?></h1>
 <h5><?=$cas?></h5>
 <br>
