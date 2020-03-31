@@ -1,0 +1,13 @@
+výstupní zpráva závěrečné práce.
+Naše zadání bylo vytvořit online poznámkovač se správou uživatelů,a poznámek.
+Toto se mi povedlo splnit,pomineme-li fakt že je to bez CSS
+k návrhu tabule nevím co bych řekl... navrhnul jsem si 2 tabulky,pro uživatele a pro jejich příspěvky,které se propojují
+pomocí idUživatele. Dál bylo potřeba vyřešit registraci,přihlašování.. to jsme nemálokrát dělali ve škole,takže s tím 
+nebyl problém. to stejně nějaké to nastavění profilu a příspěvků,bylo to dost podobné.
+Celé jsem to vzal tak,že si vytvořím jednotlivé funkce a ty oddělím od jednotlivých stránek a v potřebě si je zavolám.
+Vše je hezky roztříděné ve složách aby to bylo přehledné.
+teoreticky byl problém vše udělat..ale nevzdával jsem se a dal tomu celý týden neustálého procházení materiálů a
+ještě víc marným pokusům,než to začalo běžet jak jse potřeboval. také jsem se snažil udělat navíc CSS pomocí gridu
+avšak v tom se mi nezadařilo a věděl jsem že bych to nestihl,taže jsem to tak nechal být.
+podle mě moje práce nevypadá vubec k světu..je nehezká..ale funkčnost a učel splˇuje na 100 %. jsem rád že jsem se do toho 
+zapojil a něco pro sebe udělal.
